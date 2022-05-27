@@ -1,6 +1,6 @@
 import { CREATE, READ_ALL, UPDATE, DELETE } from '../constants/actionType';
 
-const reducer = (posts = [], action) => {
+let reducer = (posts = [], action) => {
   switch (action.type) {
     case CREATE:
       return [...posts, action.payload];
