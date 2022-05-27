@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/post";
 
-
 const ShoeForm = ({userId, setUserId}) =>{
     const dispatch = useDispatch();
     const style = formStyles();
@@ -14,13 +13,11 @@ const ShoeForm = ({userId, setUserId}) =>{
         brand: '',
         size: '',
         condition: '',
-        // convert images into string using redux64
         image: ''
     })
 
     const card = useSelector((state) =>(
         userId ? state.cards.find((name)=> name._id === userId) : null));
-    // once user clicks submit card request is sent with data passed from state
     
     useEffect(() => {
         if (card) setCardData(card);
@@ -54,19 +51,19 @@ const ShoeForm = ({userId, setUserId}) =>{
       <Paper className={style.paper}>
           <form noValidate className={`${style.root} ${style.form}`} onSubmit={handleSubmit}>
             <Typography variant='h6'>{ userId ? `Edit"${card.name}"` : 'Add a shoe'} </Typography>
-            <TextField name="name" variant="outlined" label="name"
-                 fullWidth value={cardData.name} 
-                onChange={(e)=> setCardData({ ...cardData, name: e.target.value})}></TextField>
-            <TextField name="brand" variant="outlined" label="brand" 
+                <TextField name="name" variant="outlined" label="name"
+                    fullWidth value={cardData.name} 
+                    onChange={(e)=> setCardData({ ...cardData, name: e.target.value})}></TextField>
+                <TextField name="brand" variant="outlined" label="brand" 
                     fullWidth value={cardData.brand} 
                     onChange={(e)=> setCardData({ ...cardData, brand: e.target.value})}></TextField>
-            <TextField name="size" variant="outlined" label="size" 
+                <TextField name="size" variant="outlined" label="size" 
                     fullWidth value={cardData.size} 
                     onChange={(e)=> setCardData({ ...cardData, size: e.target.value})}></TextField>
-            <TextField name="condition" variant="outlined" label="condition" 
+                <TextField name="condition" variant="outlined" label="condition" 
                     fullWidth value={cardData.condition} 
                     onChange={(e)=> setCardData({ ...cardData, condition: e.target.value})}></TextField>
-            <TextField name="image" variant="outlined" label="image" 
+                <TextField name="image" variant="outlined" label="image" 
                     fullWidth value={cardData.image} 
                     onChange={(e)=> setCardData({ ...cardData, image: e.target.value})}></TextField>
         
