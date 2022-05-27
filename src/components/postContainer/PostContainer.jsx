@@ -15,7 +15,7 @@ const PostContainer = ({setUserId}) => {
             <Grid className={styles.container} container alignItems="stretch" spacing={4}>
                 {posts.map((post) => (
                     <Grid key={post._id} item xs={12} sm={6} md={6}>
-                        <Post post={post} />
+                        {/* <Post post={post} /> */}
                         <Post post={post} setUserId={setUserId} />
                     </Grid>
                 ))}
