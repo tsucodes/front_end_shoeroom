@@ -1,7 +1,3 @@
-//  state and action as arguments  returns state changed by action
-// use the switch method for multiple actions 
-
-// posts = state
 import { CREATE, READ_ALL, UPDATE, DELETE } from '../constants/actionType';
 
 const reducer = (posts = [], action) => {

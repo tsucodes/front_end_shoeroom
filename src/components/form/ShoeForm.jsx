@@ -19,7 +19,7 @@ const ShoeForm = ({userId, setUserId}) =>{
     })
 
     const card = useSelector((state) =>(
-        userId ? state.cards.find((post)=> post._id === userId) : null));
+        userId ? state.cards.find((name)=> name._id === userId) : null));
     // once user clicks submit card request is sent with data passed from state
     
     useEffect(() => {
@@ -72,16 +72,9 @@ const ShoeForm = ({userId, setUserId}) =>{
         
             <Button className={style.buttonSubmit} variant="contained" 
                     size="large"  type="submit">Submit</Button>
-            <Button variant="contained" size="large" color="primary" onClick={clear}>Clear</Button>
+            <Button variant="contained" size="large"  onClick={clear}>Clear</Button>
           </form>
       </Paper>
     );
 }
 export default ShoeForm;
-
-
-
-
-
-
-

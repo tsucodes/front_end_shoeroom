@@ -3,9 +3,7 @@ import containerstyles from "./containerStyles";
 import { Grid, CircularProgress } from "@material-ui/core";
 import Post from "../post/Post";
 import { useSelector } from "react-redux";
- 
-
-
+  
 const PostContainer = ({setUserId}) => {
     const posts = useSelector((state) => state.posts);
     const styles = containerstyles();
