@@ -19,7 +19,7 @@ const ShoeForm = ({userId, setUserId}) =>{
     })
 
     const card = useSelector((state) =>(
-        userId ? state.cards.find((name)=> name._id === userId) : null));
+        userId ? state.cards.find((post)=> post._id === userId) : null));
     // once user clicks submit card request is sent with data passed from state
     
     useEffect(() => {
