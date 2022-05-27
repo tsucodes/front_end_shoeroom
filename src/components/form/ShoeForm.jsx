@@ -70,9 +70,9 @@ const ShoeForm = ({userId, setUserId}) =>{
                     fullWidth value={cardData.image} 
                     onChange={(e)=> setCardData({ ...cardData, image: e.target.value})}></TextField>
         
-            <Button className={style.buttonSubmit} variant="conatin" 
+            <Button className={style.buttonSubmit} variant="contained" 
                     size="large"  type="submit">Submit</Button>
-            <Button variant="conatin" size="large"  onClick={clear}>Clear</Button>
+            <Button variant="contained" size="large" color="primary" onClick={clear}>Clear</Button>
           </form>
       </Paper>
     );
