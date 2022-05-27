@@ -1,29 +1,45 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route,  } from 'react-router-dom';
-// import ReactDom from 'react-dom';
-import { Container } from '@material-ui/core';
-// import styles from './styles';
-import Homepage from './components/Homepage';
-import Navbar from './components/navigation/Navigation';
-import UserAuth from './components/auth/UserAuth';
+import React, {useEffect, useState} from 'react';
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import {readPosts} from "./action/post";
+import useStyles from './styles';
+// import Footer from './components/Footer';
+import PostContainer from './components/postContainer/PostContainer';
+import ShoeForm from './components/form/ShoeForm';
 
-const App = () => (
-  <BrowserRouter>
+
+const App = () => {
+  const styles = useStyles();
+  const [userId, setUserId] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(readPosts());
+  }, [userId, dispatch]);
+  return (
     <Container maxWidth="lg">
-       <Navbar />
-       <Routes>
-          <Route path="/"  element={<Homepage/>}></Route>
-          <Route path="/authentication" element={<UserAuth/>}></Route>
-       </Routes>
-       <Homepage/>
-    {/* <nav>
-      <Link path="/">Homepage</Link>
-      <Link path="/authentication" >Sign in</Link>
-    </nav> */}
+      <AppBar className={styles.appBar} position="static" color="inherit">
+        <Typography className={styles.heading} variant="h2" align="center">The Shoeroom</Typography>
+        {/* <img className={styles.image} src={header} alt="icon" height="60" /> */}
+      </AppBar>
 
+    <Grow in>
+
+    <Container>
+      <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
+        <Grid item xs={12} sm={7}>
+          <PostContainer setUserId={setUserId} />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <ShoeForm userId={userId} setUserId={setUserId} />
+          </Grid>
+          </Grid>
+        </Container>
+      </Grow>
     </Container>
-    </BrowserRouter>
-);
+    // find footer for material ui and import <Footer/>
+  );
+  };
 
 
 export default App;

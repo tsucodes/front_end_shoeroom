@@ -1,15 +1,5 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionType';
+import { CREATE, READ_ALL, UPDATE, DELETE } from '../constants/actionType';
 import * as api from '../api/index.js';
-
-export const getPosts = () => async (dispatch) => {
-  try {
-    const { data } = await api.fetchPosts();
-
-    dispatch({ type: FETCH_ALL, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const createPost = (post) => async (dispatch) => {
   try {
@@ -17,7 +7,16 @@ export const createPost = (post) => async (dispatch) => {
 
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+  }
+};
+export const readPosts = () => async (dispatch) => {
+  try {
+    const { data } = await api.readPosts();
+
+    dispatch({ type: READ_ALL, payload: data });
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
@@ -27,19 +26,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
-    console.log(error);
-  }
-};
-
-export const likePost = (id) => async (dispatch) => {
-  const user = JSON.parse(localStorage.getItem('profile'));
-
-  try {
-    const { data } = await api.likePost(id, user?.token);
-
-    dispatch({ type: LIKE, payload: data });
-  } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -49,6 +36,6 @@ export const deletePost = (id) => async (dispatch) => {
 
     dispatch({ type: DELETE, payload: id });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
